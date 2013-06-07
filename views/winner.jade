@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  script(src='/javascripts/winner.js')
+  div.well(style="margin-top: 60px;")
+    a.btn.btn-small.btn-danger.pull-right(type="button", href="/logout") Logout
+    a.btn.btn-small.btn-success.pull-right(type="button", href="/admin", style="margin-right: 20px;") Admin
+    a.btn.btn-small.btn-success.pull-right(type="button", href="/voting", style="margin-right: 20px;") Voting
+    h1 Winner
+    ul#winnerList.hide
+      - teams.forEach(function(team){
+        li(data-final-votes="#{team.finalVotes}") #{team.teamName}  
+          span(style="font-size: 14px;") [#{team.finalVotes}] [#{team.votes}]
+      - })
+    ul#winnerListSorted

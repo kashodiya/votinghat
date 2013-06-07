@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  script(src='/javascripts/index.js')
+  div.hero-unit
+    h1  Hack-a-thon voting!
+  div.well
+    div.thumbnail.pull-right(style="margin-left: 20px;")
+      img(src="/images/logo-small.jpg")
+    form#loginForm
+      fieldset
+        legend Login
+        div#loginFormError.alert.alert-error.fade.in(style="display: none")
+          button.close(type="button", onclick="$('#loginFormError').hide()") &times;
+          span#loginFormErrorMsg This is error
+        p
+          lebel Enter your token 
+          span#tokenTooltip.icon-stack
+            i.icon-circle.icon-stack-base
+            i.icon-info.icon-light
+        p
+          input(name="token")
+        p
+          button(type="submit", class="btn btn-primary btn-large") Login 
+

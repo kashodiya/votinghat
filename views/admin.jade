@@ -1,0 +1,73 @@
+extends layout
+
+block content
+  include adminTemplates.html
+  script(src='/javascripts/admin.js')
+  div.well(style="margin-top: 60px;")
+    a.btn.btn-small.btn-danger.pull-right(type="button", href="/logout") Logout
+    a.btn.btn-small.btn-success.pull-right(type="button", href="/winner", style="margin-right: 20px;") Winner
+    a.btn.btn-small.btn-success.pull-right(type="button", href="/voting", style="margin-right: 20px;") Voting
+    h1 Admin
+  div.well
+    form#judgeVotesForm.form-horizontal
+      fieldset
+        legend Ranks given by judges
+        div#judgeVotesFormError.alert.alert-error.fade.in(style="display: none")
+          button.close(type="button", onclick="$('#judgeVotesFormError').hide()") &times;
+          span#udgeVotesFormErrorMsg This is error
+        div#judgeVotesFormSuccess.alert.alert-success.fade.in(style="display: none")
+          button.close(type="button", onclick="$('#judgeVotesFormSuccess').hide()") &times;
+          span#judgeVotesFormSuccessMsg Saved
+        div#judgeVotesSection
+        div.form-actions
+          button.btn.btn-primary(type="submit") Save 
+
+  div.well
+    a(name="userManagement")
+    form#userForm.form-horizontal
+      fieldset
+        legend User management
+        input(name='asNew', type='hidden')
+        div.control-group
+          label.control-label User Name
+          div.controls
+            input(name='name')
+        div.control-group
+          label.control-label Token
+          div.controls
+            input(name='token')
+        div.control-group
+          label.control-label Voted for Team ID
+          div.controls
+            input(name='votedForId')
+        div.control-group
+          label.control-label ObjectID
+          div.controls
+            input(name='id', disabled)
+        div.form-actions
+          button#saveUserBtn.btn.btn-primary(type="button") Save 
+          button#saveUserAsNewBtn.btn.btn-primary.btn-success(type="button", style="margin-left: 10px;") Save As New
+          button#deleteUserBtn.btn.btn-primary.btn-danger(type="button", style="margin-left: 50px;") Delete
+
+  div.well
+    button#showVotes.btn.btn-primary.btn-primary Show votes
+    span
+      strong#showVotesMsg.pull-right
+    table.table
+      thead
+        tr
+          th Team name - leader name
+          th User votes
+          th Judge weights (reverse of rank)
+          th Judge vote
+          th Total votes
+      tbody#votesTableBody
+
+
+  div.well
+    button#setupDb.btn.btn-primary.btn-danger Setup database - It will DELETE all data!
+    span#setupError(style="padding-left: 10px") 
+    h2 Users list
+    ul(id="userList")
+    h2 Team list
+    ul(id="teamList")

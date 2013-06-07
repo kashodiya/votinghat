@@ -1,0 +1,73 @@
+<script id="userRowTemplate" type="text/x-handlebars-template">
+    {{#each users}}
+      <li>
+        <a class="userLink"
+          href="#userManagement" 
+          data-name="{{name}}"
+          data-user-id="{{_id}}"
+          data-token="{{token}}"
+          data-voted-team-id="{{votedTeamId}}">{{name}} - {{token}} - {{votedTeamId}}</a>
+
+        | <a class="userLink"
+          href="/?token={{token}}" >Login</a>
+
+      </li>
+    {{/each}}
+</script>
+
+
+<script id="teamRowTemplate" type="text/x-handlebars-template">
+    {{#each teams}}
+      <li>
+      <a href="#" 
+        data-id="{{_id}}"
+        data-teamName="{{teamName}}"
+        data-leaderName="{{leaderName}}">{{teamName}} - {{leaderName}}</a>
+      {{#each teamList}}
+        <div>{{this}}</div>
+      {{/each}}
+      <div>Votes = {{votes}}</div>
+      <div>Judge Rank = {{judgeRank}}</div>
+      <div>ID = {{_id}}</div>
+      </li>
+    {{/each}}
+</script>
+
+
+<script id="votesTemplate" type="text/x-handlebars-template">
+  {{#each teams}}
+    <tr>
+      <td>
+        <span 
+          data-id="{{_id}}"
+          data-teamName="{{teamName}}"
+          data-leaderName="{{leaderName}}">{{teamName}} - {{leaderName}}</span>
+      </td>    
+      <td>    
+        {{votes}}
+      </td>    
+      <td>    
+        {{judgeRank}}
+      </td>    
+      <td>    
+        {{judgeWeight}}
+      </td>    
+      <td>    
+        {{finalVotes}}
+      </td>    
+    </tr>
+  {{/each}}
+</script>
+
+
+<script id="judgeVotesTemplate" type="text/x-handlebars-template">
+    {{#each teams}}
+      <div class="control-group">
+        <label class="control-label" for="{{_id}}">{{teamName}}</label>
+        <div class="controls">
+          <input type="text" class="rankInput" name="{{_id}}" value="{{judgeRankR}}">
+        </div>
+      </div>
+    {{/each}}
+</script>
+

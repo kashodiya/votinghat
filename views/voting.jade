@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  - if(typeof user.votedTeamId !== "undefined")
+    input#votedTeamId(type="hidden", value="#{user.votedTeamId}")
+  script(src='/javascripts/voting.js')
+  div.well(style="margin-top: 60px;")
+    a.btn.btn-small.btn-danger.pull-right(type="button", href="/logout") Logout
+    - if(isAdmin)
+      a.btn.btn-small.btn-success.pull-right(type="button", href="/winner", style="margin-right: 20px;") Winner
+      a.btn.btn-small.btn-success.pull-right(type="button", href="/admin", style="margin-right: 20px;") Admin
+    h1 Vote for the winning team 
+    div.thumbnail.pull-right(style="margin-left: 20px;")
+      img(src="/images/logo-small.jpg")
+    h3 Welcome #{user.name}!
+    div#winnerTeamContainer Loading team list...
+    button#submitVoteBtn.btn.btn-primary.btn-large.disabled Submit your vote &raquo;
+    div#voteSubmitSuccess.alert.alert-success.fade.in(style="display: none")
+      button.close(type="button", onclick="$('#voteSubmitSuccess').hide()") &times;
+      span#voteSubmitSuccessMsg Submitted
+    div#voteSubmitError.alert.alert-error.fade.in(style="display: none")
+      button.close(type="button", onclick="$('#voteSubmitError').hide()") &times;
+      span#voteSubmitErrorMsg Submitted
