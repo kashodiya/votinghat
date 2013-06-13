@@ -34,6 +34,20 @@
 </script>
 
 
+<script id="userTeamVotesTemplate" type="text/x-handlebars-template">
+    {{#each teams}}
+      <li>
+      <a href="#" 
+        data-id="{{_id}}"
+        data-teamName="{{teamName}}"
+        data-leaderName="{{leaderName}}">{{teamName}} - {{leaderName}}</a>
+      {{#each voterList}}
+        <div>{{this}}</div>
+      {{/each}}
+      </li>
+    {{/each}}
+</script>
+
 <script id="votesTemplate" type="text/x-handlebars-template">
   {{#each teams}}
     <tr>

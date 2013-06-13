@@ -88,6 +88,23 @@ $(function(){
 
     $('#showVotesMsg').html('Total votes: ' + totalVotes + ' | Total voters: ' + allUsers.length);
 
+    showUserTeamVotes();
+
+  }
+
+  function showUserTeamVotes(){
+    $.each(allTeams, function(i, team){
+      team.voterList = [];
+      $.each(allUsers, function(i, user){
+        if(user.votedTeamId){
+          if(team._id == user.votedTeamId){
+            team.voterList.push(user.name);
+          }
+        }
+      });
+    });
+    var userTeamVotesTemplate = Handlebars.compile ($('#userTeamVotesTemplate').html());
+    $('#userTeamVotes').empty().append(userTeamVotesTemplate({teams: allTeams}));
   }
 
   $('#showVotes').on('click', function(){
